@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface MovieService {
-    @GET("Top250Movies/k_cpx57180/")
+    @GET("Top250Movies/k_x0nwd8tl/")
     suspend fun getAllMovies() : Response<AllMovies>
 
     @GET("movie/{id}")
