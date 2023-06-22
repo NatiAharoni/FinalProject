@@ -101,7 +101,8 @@
             android:src="@drawable/baseline_favorite_border_24"
             app:fab_showShadow="true"
             app:fab_colorNormal="@color/white"
-            app:fab_size="mini"/>
+            app:fab_size="mini"
+            tools:ignore="MissingClass" />
 
     </LinearLayout>
 
