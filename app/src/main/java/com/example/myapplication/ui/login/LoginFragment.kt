@@ -61,7 +61,7 @@ class LoginFragment : Fragment() {
                 is Error -> {
                     binding.loginProgressBar.isVisible = false
                     binding.buttonLogin.isEnabled = true
-                    //Toast.makeText(requireContext(),it.status.message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),it.status.message,Toast.LENGTH_SHORT).show()
                 }
             }
         }

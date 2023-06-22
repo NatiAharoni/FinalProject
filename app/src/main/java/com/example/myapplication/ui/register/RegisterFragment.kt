@@ -51,10 +51,8 @@ class RegisterFragment : Fragment(){
                     binding.userRegisterButton.isEnabled = false
                 }
                 is Success -> {
-                    if(it != null){
-                        Toast.makeText(requireContext(),"Registration successful",Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-                    }
+                    Toast.makeText(requireContext(),"Registration successful",Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 }
                 is Error -> {
                     binding.registerProgress.isVisible = false

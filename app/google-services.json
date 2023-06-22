@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "521311552622",
-    "project_id": "finalprojectkotlin-d6533",
-    "storage_bucket": "finalprojectkotlin-d6533.appspot.com"
+    "project_number": "843515131161",
+    "project_id": "kotlinapp-83419",
+    "storage_bucket": "kotlinapp-83419.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:521311552622:android:f085d1ae12af78b87c927f",
+        "mobilesdk_app_id": "1:843515131161:android:ef3910270f386385580188",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "com.example.myapplication2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "521311552622-rmuc2odv7pbk3319feq3gt5qmbri1tm0.apps.googleusercontent.com",
+          "client_id": "843515131161-dm4s6ul0u1kv8lqcerppq84in6t7t2k9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBRLlMLUejOwb5ml0h28FRAQtLzZUv8-fw"
+          "current_key": "AIzaSyDljewcollY-ZLzSOmXnWETcrZ7WUyVjQE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "521311552622-rmuc2odv7pbk3319feq3gt5qmbri1tm0.apps.googleusercontent.com",
+              "client_id": "843515131161-dm4s6ul0u1kv8lqcerppq84in6t7t2k9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

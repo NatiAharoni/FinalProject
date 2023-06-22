@@ -15,7 +15,7 @@ class AuthRepositoryFirebase : AuthRepository {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val userRef = FirebaseFirestore.getInstance().collection("users")
 
-    override suspend fun currentUser(): Resource<Any> {
+    override suspend fun currentUser(): Resource<User> {
         return withContext(Dispatchers.IO) {
             safeCall {
                 val user = userRef.document(firebaseAuth.currentUser!!.uid).get().await().toObject(User::class.java)
@@ -24,7 +24,7 @@ class AuthRepositoryFirebase : AuthRepository {
         }
     }
 
-    override suspend fun login(email: String, password: String): Resource<Any> {
+    override suspend fun login(email: String, password: String): Resource<User> {
         return withContext(Dispatchers.IO) {
             safeCall {
                 val result  = firebaseAuth.signInWithEmailAndPassword(email,password).await()
@@ -37,7 +37,7 @@ class AuthRepositoryFirebase : AuthRepository {
     override suspend fun createUser(
         userEmail: String,
         userLoginPass: String
-    ): Resource<Any>{
+    ): Resource<User>{
         return withContext(Dispatchers.IO) {
             safeCall {
                 val registrationResult  = firebaseAuth.createUserWithEmailAndPassword(userEmail,userLoginPass).await()
