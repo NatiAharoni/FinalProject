@@ -57,6 +57,7 @@ class RegisterFragment : Fragment(){
                 is Error -> {
                     binding.registerProgress.isVisible = false
                     binding.userRegisterButton.isEnabled = true
+                    Toast.makeText(requireContext(),it.status.message,Toast.LENGTH_SHORT).show()
                 }
             }
         }

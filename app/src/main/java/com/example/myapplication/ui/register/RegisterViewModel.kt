@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.register
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.*
 import com.example.myapplication.data.models.User
