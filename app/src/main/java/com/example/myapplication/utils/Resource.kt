@@ -11,7 +11,6 @@ class Resource<out T> private constructor(val status: Status<T>){
 
 
 sealed class Status<out T>(val data : T?  = null)
-
 class Success<T>(data: T) : Status<T>(data)
 class Error<T>(val message : String, data: T? = null) : Status<T>(data)
 class Loading<T>(data: T? = null) : Status<T>(data)
