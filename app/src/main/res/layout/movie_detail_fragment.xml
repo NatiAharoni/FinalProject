@@ -92,9 +92,20 @@
             android:id="@+id/trailer"
             android:hint="Description"/>
 
-
-
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/favoriteButton"
+            android:src="@drawable/baseline_favorite_border_24"
+            app:fab_showShadow="true"
+            app:fab_colorNormal="@color/white"
+            app:fab_size="mini"/>
 
     </LinearLayout>
+
+
+
 
 </ScrollView>
