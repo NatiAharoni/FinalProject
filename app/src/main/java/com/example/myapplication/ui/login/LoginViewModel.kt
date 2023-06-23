@@ -17,7 +17,7 @@ class LoginViewModel(private val authRep: AuthRepository) : ViewModel() {
     init {
         viewModelScope.launch {
             _currentUser.postValue(Resource.loading())
-            _currentUser.postValue(authRep.currentUser() as Resource<User>?)
+            _currentUser.postValue(authRep.currentUser())
         }
     }
 
@@ -28,7 +28,7 @@ class LoginViewModel(private val authRep: AuthRepository) : ViewModel() {
             _userSignInStatus.postValue(Resource.loading())
             viewModelScope.launch {
                 val loginResult = authRep.login(userEmail,userPass)
-                _userSignInStatus.postValue(loginResult as Resource<User>?)
+                _userSignInStatus.postValue(loginResult)
             }
         }
     }

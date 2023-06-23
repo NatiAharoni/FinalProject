@@ -4,6 +4,9 @@ import android.content.Context
 import com.example.myapplication.data.local_db.AppDatabase
 import com.example.myapplication.data.remote_db.MovieService
 import com.example.myapplication.utils.Constants
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -41,4 +44,16 @@ class AppModule {
     @Provides
     @Singleton
     fun provideMovieDao(database: AppDatabase) = database.movieDao()
+
+//    @Provides
+//    @Singleton
+//    fun provideFirebaseAuth(): FirebaseAuth {
+//        return FirebaseAuth.getInstance()
+//    }
+//
+//    @Provides
+//    @Singleton
+//    fun provideFirebaseFirestore(): FirebaseFirestore {
+//        return FirebaseFirestore.getInstance()
+//    }
 }

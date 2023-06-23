@@ -3,6 +3,7 @@ package com.example.myapplication.ui.all_movies
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -63,7 +64,6 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
                         it.status.message, Toast.LENGTH_LONG)
                     note.setTextMaxLines(4)
                     note.show()
-                    Log.d("Error-API", it.status.message)
                 //Toast.makeText(requireContext(),it.status.message,Toast.LENGTH_LONG).show()
                 }
             }
@@ -76,4 +76,12 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
            R.id.action_allMoviesFragment_to_singleMovieFragment,
            bundleOf("id" to movieId))
     }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if(item.itemId == R.id.action_sign_out) {
+//            viewModel.signOut()
+//            findNavController().navigate(R.id.action_allMoviesFragment_to_loginFragment)
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 }

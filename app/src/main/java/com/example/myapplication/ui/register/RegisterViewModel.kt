@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import com.example.myapplication.data.models.User
 import com.example.myapplication.data.repository.AuthRepository
 import com.example.myapplication.utils.Resource
+import com.example.myapplication.utils.Success
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(private val repository: AuthRepository) : ViewModel() {
@@ -22,7 +23,7 @@ class RegisterViewModel(private val repository: AuthRepository) : ViewModel() {
         error?.let {
             _userRegistrationStatus.postValue(Resource.error(it))
         }
-        _userRegistrationStatus.value = Resource.loading()
+        _userRegistrationStatus.postValue(Resource.loading())
         viewModelScope.launch {
             val registrationResult = repository.createUser(email,password)
             _userRegistrationStatus.postValue(registrationResult)
