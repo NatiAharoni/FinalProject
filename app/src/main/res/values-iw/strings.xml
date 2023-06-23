@@ -8,7 +8,6 @@
     <string name="add">הוסף</string>
     <string name="add_movie_title">שם הסרט</string>
     <string name="add_picture">הוספת תמונה</string>
-
     <string name="delete_movie">מחיקת סרט</string>
     <string name="delete_movie_msg">האם אתה בטוח שאתה רוצה למחוק את הסרט מהרשימה?</string>
     <string name="delete_movie_btn">מחיקה</string>
