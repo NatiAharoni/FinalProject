@@ -24,7 +24,7 @@ class RegisterViewModel(private val repository: AuthRepository) : ViewModel() {
             _userRegistrationStatus.postValue(Resource.error(it))
         }
         _userRegistrationStatus.postValue(Resource.loading())
-        viewModelScope.launch {
+        viewModelScope.launch{
             val registrationResult = repository.createUser(email,password)
             _userRegistrationStatus.postValue(registrationResult)
         }
