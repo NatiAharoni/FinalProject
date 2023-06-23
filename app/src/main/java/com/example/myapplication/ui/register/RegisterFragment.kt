@@ -52,7 +52,7 @@ class RegisterFragment : Fragment(){
                 }
                 is Success -> {
                     Toast.makeText(requireContext(),"Registration successful",Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_loginFragment_to_allMoviesFragment)
+                    findNavController().navigate(R.id.action_registerFragment_to_allMoviesFragment)
                 }
                 is Error -> {
                     binding.registerProgress.isVisible = false
