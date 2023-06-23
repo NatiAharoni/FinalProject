@@ -3,6 +3,8 @@ package com.example.myapplication.di
 import android.content.Context
 import com.example.myapplication.data.local_db.AppDatabase
 import com.example.myapplication.data.remote_db.MovieService
+import com.example.myapplication.data.repository.AuthRepository
+import com.example.myapplication.data.repository.firebaseImpl.AuthRepositoryFirebase
 import com.example.myapplication.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
@@ -45,12 +47,17 @@ class AppModule {
     @Singleton
     fun provideMovieDao(database: AppDatabase) = database.movieDao()
 
-//    @Provides
-//    @Singleton
-//    fun provideFirebaseAuth(): FirebaseAuth {
-//        return FirebaseAuth.getInstance()
-//    }
-//
+    @Provides
+    @Singleton
+    fun provideAuthRepository(): AuthRepository {
+        return AuthRepositoryFirebase()
+    }
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
+    }
+
 //    @Provides
 //    @Singleton
 //    fun provideFirebaseFirestore(): FirebaseFirestore {

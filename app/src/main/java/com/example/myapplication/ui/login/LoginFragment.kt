@@ -16,13 +16,16 @@ import com.example.myapplication.utils.Loading
 import com.example.myapplication.utils.Success
 import com.example.myapplication.utils.Error
 import com.example.myapplication.utils.autoCleared
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var binding : FragmentLoginBinding by autoCleared()
-    private val viewModel : LoginViewModel by viewModels {
-        LoginViewModel.LoginViewModelFactory(AuthRepositoryFirebase())
-    }
+    private val viewModel : LoginViewModel by viewModels()
+//    private val viewModel : LoginViewModel by viewModels {
+//        LoginViewModel.LoginViewModelFactory(AuthRepositoryFirebase())
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
