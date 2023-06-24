@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
-import com.example.myapplication.data.repository.firebaseImpl.AuthRepositoryFirebase
+
 import com.example.myapplication.databinding.FragmentLoginBinding
 import com.example.myapplication.utils.Loading
 import com.example.myapplication.utils.Success
