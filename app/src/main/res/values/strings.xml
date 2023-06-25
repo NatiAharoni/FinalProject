@@ -18,6 +18,9 @@
     <string name="edit_movie">Edit movie</string>
     <string name="add_photo">Add Photo</string>
     <string name="pls_fill">Please fill the following details:</string>
+
+    <string name="add_movie_title">Add Movie Title</string>
+    <string name="add_movie_year">Add Movie Year</string>
+    <string name="add_movie_description">Add Movie Description</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
