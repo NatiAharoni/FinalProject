@@ -19,4 +19,8 @@
     <string name="edit_movie">ערוך סרט</string>
     <string name="add_photo">הוסף תמונה</string>
 
+    <string name="add_movie_title">ערוך כותרת</string>
+    <string name="add_movie_year">ערוך שנה</string>
+    <string name="add_movie_description">תאור</string>
+
 </resources>
