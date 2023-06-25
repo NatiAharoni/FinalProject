@@ -10,7 +10,7 @@ import retrofit2.http.Path
 // The functions are defined as suspend functions to be called from coroutines,
 // and the responses are wrapped in Response objects to handle the API response.
 interface MovieService {
-    @GET("en/API/Top250Movies/k_40njica2/")
+    @GET("en/API/Top250Movies/k_bzmwixjj/")
     suspend fun getAllMovies() : Response<AllMovies>
 
     @GET("movie/{id}")
