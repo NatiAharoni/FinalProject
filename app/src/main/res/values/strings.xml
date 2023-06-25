@@ -4,7 +4,7 @@
     <string name="Email">Email</string>
     <string name="Password">Password</string>
     <string name="Login">Login</string>
-    <string name="Account">Dont have an account yet, click to register</string>
+    <string name="Account">Dont have an account yet? click to register</string>
     <string name="SignUp">Sign Up</string>
     <string name="Register">Register</string>
     <string name="title">title</string>
@@ -28,5 +28,6 @@
     <string name="RegisterSuccess">Registration successful</string>
     <string name="SaveMovie">Save Movie!</string>
     <string name="DataInsert">Data insert successfully</string>
+    <string name="updateData">Data Update successfully</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

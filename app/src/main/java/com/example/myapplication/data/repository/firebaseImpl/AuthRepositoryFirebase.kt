@@ -38,8 +38,10 @@ class AuthRepositoryFirebase : AuthRepository{
 
     override suspend fun login(email: String, password: String): Resource<User> {
         return withContext(Dispatchers.IO) {
-            val result  = firebaseAuth.signInWithEmailAndPassword(email,password).await()
-            Resource.success(User(email))
+            safeCall {
+                val result  = firebaseAuth.signInWithEmailAndPassword(email,password).await()
+                Resource.success(User(email))
+            }
 //            safeCall {
 //                val result  = firebaseAuth.signInWithEmailAndPassword(email,password).await()
 //                val user = userRef.document(result.user?.uid!!).get().await().toObject(User::class.java)!!

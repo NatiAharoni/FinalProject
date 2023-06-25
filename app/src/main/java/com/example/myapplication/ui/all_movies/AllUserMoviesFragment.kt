@@ -2,9 +2,7 @@ package com.example.myapplication.ui.all_movies
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,8 +20,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
-
 @AndroidEntryPoint
 class AllUserMoviesFragment : Fragment(), UserMovieAdapter.MovieItemListener {
 
@@ -44,6 +40,7 @@ class AllUserMoviesFragment : Fragment(), UserMovieAdapter.MovieItemListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true)
         binding = FragmentAllUserMoviesBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -56,7 +53,6 @@ class AllUserMoviesFragment : Fragment(), UserMovieAdapter.MovieItemListener {
         binding.moviesUserRv.adapter = adapter
 
         getMainFirebaseMovie()
-
     }
 
     override fun onMovieClick(movieId: String) {
@@ -98,5 +94,18 @@ class AllUserMoviesFragment : Fragment(), UserMovieAdapter.MovieItemListener {
         })
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_sign_out) {
+            viewModel.signOut()
+            findNavController().navigate(R.id.action_allUserMoviesFragment_to_loginFragment)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

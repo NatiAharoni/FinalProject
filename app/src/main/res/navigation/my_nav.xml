@@ -63,10 +63,17 @@
         <action
             android:id="@+id/action_allUserMoviesFragment_to_singleMovieFragment"
             app:destination="@id/singleMovieFragment" />
+        <action
+            android:id="@+id/action_allUserMoviesFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/editMovieFragment"
         android:name="com.example.myapplication.ui.all_movies.EditMovieFragment"
         android:label="fragment_edit_movie"
-        tools:layout="@layout/fragment_edit_movie" />
+        tools:layout="@layout/fragment_edit_movie" >
+        <action
+            android:id="@+id/action_editMovieFragment_to_allMoviesFragment"
+            app:destination="@id/allMoviesFragment" />
+    </fragment>
 </navigation>

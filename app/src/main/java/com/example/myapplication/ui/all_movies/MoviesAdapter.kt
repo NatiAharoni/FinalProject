@@ -36,7 +36,7 @@ class MoviesAdapter(private val listener : MovieItemListener) :
         }
         override fun onClick(v: View?) {
 
-            listener.onMovieClick(movie.id)
+            listener.onMovieClick(movie)
         }
     }
 
@@ -58,6 +58,6 @@ class MoviesAdapter(private val listener : MovieItemListener) :
     override fun getItemCount() = movies.size
 
     interface MovieItemListener {
-        fun onMovieClick(movieId : String)
+        fun onMovieClick(movie : Movie)
     }
 }
