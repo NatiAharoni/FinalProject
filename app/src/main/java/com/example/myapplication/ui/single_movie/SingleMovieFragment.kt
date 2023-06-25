@@ -153,7 +153,7 @@ class SingleMovieFragment : Fragment() {
         binding.movieTitle.text = movie.title
         binding.movieYear.text = movie.year
         binding.trailer.text = viewModel.gatTrailer(movie.id).toString()
-        Glide.with(requireContext()).load(movie.image).circleCrop().into(binding.itemImage)
+        Glide.with(requireContext()).load(movie.image).into(binding.itemImage)
         movieImageF = movie.image
     }
 
