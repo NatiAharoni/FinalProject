@@ -9,8 +9,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AllMoviesViewModel @Inject constructor(
-     movieRepository: MovieRepository
+     movieRepository: MovieRepository,
+     private val authRepository: AuthRepository
 ) :ViewModel() {
 
     val movies = movieRepository.getMovies()
+
+    fun signOut() {
+        authRepository.logout()
+    }
 }

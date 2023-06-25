@@ -34,6 +34,7 @@ class EditMovieFragment : Fragment() {
 
     private val viewModel: SingleMovieViewModel by viewModels()
 
+    var idTo: String? = null
     lateinit var movie: Movie
 
     override fun onCreateView(
@@ -57,7 +58,7 @@ class EditMovieFragment : Fragment() {
                 val movieYear = jsonObj.getString("movieYear")
                 val movieId = jsonObj.getString("movieId")
 
-                 movie = Movie(
+                movie = Movie(
                     movieId,
                     movieTitle,
                     movieYear,
@@ -80,9 +81,8 @@ class EditMovieFragment : Fragment() {
             val upId = movie.id
             val upUrlImage = movie.image
             val movieUpdate = Movie(upId, upTitel, upYear, upUrlImage)
-            Log.d("update","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111")
             dbRef.setValue(movieUpdate).addOnCompleteListener {
-                Toast.makeText(requireContext(),"Data Update successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),getString(R.string.updateData), Toast.LENGTH_SHORT).show()
 
                 findNavController().navigate(R.id.action_editMovieFragment_to_allMoviesFragment)
 
@@ -90,8 +90,6 @@ class EditMovieFragment : Fragment() {
                 Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
             }
         }
-
-
     }
 
     private fun updateMovie2(movie: Movie) {

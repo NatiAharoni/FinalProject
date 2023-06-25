@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_allUserMoviesFragment_to_singleMovieFragment"
             app:destination="@id/singleMovieFragment" />
+        <action
+            android:id="@+id/action_allUserMoviesFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/editMovieFragment"

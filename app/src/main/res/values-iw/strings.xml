@@ -3,7 +3,7 @@
     <string name="Email">אימייל</string>
     <string name="Password">סיסמא</string>
     <string name="Login">התחברות</string>
-    <string name="Account">אין לך חשבון, לחץ כדי להירשם</string>
+    <string name="Account">אין לך חשבון? לחץ כדי להירשם</string>
     <string name="SignUp">הרשמה</string>
     <string name="year">שנה</string>
     <string name="SignIn">הרשמה</string>
@@ -27,6 +27,7 @@
     <string name="valid_email">אימייל לא מתאים</string>
     <string name="RegisterSuccess">ההרשמה הצליחה</string>
     <string name="SaveMovie">שמור סרט!</string>
-    <string name="DataInsert">דאטה נוסף בהצלחה</string>
+    <string name="DataInsert">מידע נוסף בהצלחה</string>
+    <string name="updateData">המידע עודכן בהצלחה</string>
 
 </resources>

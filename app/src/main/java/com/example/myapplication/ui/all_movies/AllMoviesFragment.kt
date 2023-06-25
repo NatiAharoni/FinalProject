@@ -3,9 +3,7 @@ package com.example.myapplication.ui.all_movies
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -48,13 +46,13 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
     val mainFirebaseMoviesList : ArrayList<Movie> = ArrayList()
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
+        
         binding = MoviesFragmentBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -119,10 +117,7 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
             }else{
                 editMode = true
                 getMainFirebaseMovie2()
-
-
             }
-
         }
     }
 
@@ -186,18 +181,27 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
                         }
                     }
                     adapter.setMovies(mainFirebaseMoviesList)
-                    binding.progressBar.visibility = View.GONE
                     //binding.moviesUserRv.visibility = View.VISIBLE
-
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
+        binding.progressBar.visibility = View.GONE
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_sign_out) {
+            viewModel.signOut()
+            findNavController().navigate(R.id.action_allMoviesFragment_to_loginFragment)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
