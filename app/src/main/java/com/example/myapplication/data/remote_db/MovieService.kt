@@ -7,12 +7,12 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface MovieService {
-    @GET("Top250Movies/k_11vc4rzc/")
+    @GET("en/API/Top250Movies/k_cpx57180/")
     suspend fun getAllMovies() : Response<AllMovies>
 
     @GET("movie/{id}")
     suspend fun getMovie(@Path("id")id :String) : Response<Movie>
 
-    @GET("Trailer/k_11vc4rzc/{id}")
+    @GET("API/Trailer/k_cpx57180/{id}")
     suspend fun getMovieTrailer(@Path("id")id :String) : Response<String>
 }
