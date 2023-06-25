@@ -48,22 +48,22 @@ class RegisterFragment : Fragment(){
 
         viewModel.userRegistrationStatus.observe(viewLifecycleOwner) {
 
-            when(it.status) {
+            when (it.status) {
                 is Loading -> {
                     binding.registerProgress.isVisible = true
                     binding.userRegisterButton.isEnabled = false
                 }
                 is Success -> {
-                    Toast.makeText(requireContext(),"Registration successful",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT)
+                        .show()
                     findNavController().navigate(R.id.action_registerFragment_to_allMoviesFragment)
                 }
                 is Error -> {
                     binding.registerProgress.isVisible = false
                     binding.userRegisterButton.isEnabled = true
-                    Toast.makeText(requireContext(),it.status.message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.status.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
-
     }
 }
