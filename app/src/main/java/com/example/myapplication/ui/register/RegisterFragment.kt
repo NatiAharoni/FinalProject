@@ -54,8 +54,14 @@ class RegisterFragment : Fragment(){
                     binding.userRegisterButton.isEnabled = false
                 }
                 is Success -> {
-                    Toast.makeText(requireContext(),"Registration successful",Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_registerFragment_to_allMoviesFragment)
+                    Toast.makeText(requireContext(),"Register was successful", Toast.LENGTH_SHORT).show()
+                    val isAdmin = checkIfAdmin(it.status.data!!.email)
+                    if (isAdmin) {
+                        findNavController().navigate(R.id.action_registerFragment_to_allMoviesFragment)
+                    }
+                    else{
+                        findNavController().navigate(R.id.action_registerFragment_to_allUserMoviesFragment)
+                    }
                 }
                 is Error -> {
                     binding.registerProgress.isVisible = false
@@ -66,4 +72,8 @@ class RegisterFragment : Fragment(){
         }
 
     }
+}
+
+private fun checkIfAdmin(email:String?) : Boolean{
+    return email == "admin@gmail.com"
 }

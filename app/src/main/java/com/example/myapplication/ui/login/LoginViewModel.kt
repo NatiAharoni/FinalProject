@@ -40,6 +40,10 @@ class LoginViewModel @Inject constructor(private val authRep: AuthRepository) : 
             _userSignInStatus.postValue(loginResult)
         }
     }
+
+    private fun checkIfAdmin(email:String) : Boolean{
+        return email == "admin@gmail.com"
+    }
 }
 
 
