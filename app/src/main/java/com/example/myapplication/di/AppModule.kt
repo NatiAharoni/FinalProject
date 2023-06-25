@@ -47,20 +47,20 @@ class AppModule {
     @Singleton
     fun provideMovieDao(database: AppDatabase) = database.movieDao()
 
-    @Provides
-    @Singleton
-    fun provideAuthRepository(): AuthRepository {
-        return AuthRepositoryFirebase()
-    }
+//    @Provides
+//    @Singleton
+//    fun provideAuthRepository(): AuthRepository {
+//        return provideFirebaseAuth()
+//    }
     @Provides
     @Singleton
     fun provideFirebaseAuth(): FirebaseAuth {
         return FirebaseAuth.getInstance()
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideFirebaseFirestore(): FirebaseFirestore {
-//        return FirebaseFirestore.getInstance()
-//    }
+    @Provides
+    @Singleton
+    fun provideFirebaseFirestore(): FirebaseFirestore {
+        return FirebaseFirestore.getInstance()
+    }
 }
