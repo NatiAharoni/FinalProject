@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_loginFragment_to_allMoviesFragment"
             app:destination="@id/allMoviesFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_allUserMoviesFragment"
+            app:destination="@id/allUserMoviesFragment" />
     </fragment>
     <fragment
         android:id="@+id/allUserMoviesFragment"

@@ -57,8 +57,15 @@ class LoginFragment : Fragment() {
                     binding.buttonLogin.isEnabled = false
                 }
                 is Success -> {
-                    Toast.makeText(requireContext(),"Login successful", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_loginFragment_to_allMoviesFragment)
+                    Toast.makeText(requireContext(),getString(R.string.LoginSuccess), Toast.LENGTH_SHORT).show()
+                    val isAdmin = checkIfAdmin(it.status.data!!.email)
+                    if (isAdmin) {
+                        findNavController().navigate(R.id.action_loginFragment_to_allMoviesFragment)
+                    }
+                    else{
+                        findNavController().navigate(R.id.action_loginFragment_to_allUserMoviesFragment)
+                    }
+
                 }
                 is Error -> {
                     binding.loginProgressBar.isVisible = false
@@ -85,4 +92,7 @@ class LoginFragment : Fragment() {
             }
         }
     }
+}
+private fun checkIfAdmin(email:String?) : Boolean{
+    return email == "admin@gmail.com"
 }

@@ -22,5 +22,11 @@
     <string name="add_movie_title">Add Movie Title</string>
     <string name="add_movie_year">Add Movie Year</string>
     <string name="add_movie_description">Add Movie Description</string>
+    <string name="emptystrings">Empty email or password</string>
+    <string name="LoginSuccess">Login successful</string>
+    <string name="valid_email">Not a valid email</string>
+    <string name="RegisterSuccess">Registration successful</string>
+    <string name="SaveMovie">Save Movie!</string>
+    <string name="DataInsert">Data insert successfully</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

@@ -54,7 +54,7 @@ class RegisterFragment : Fragment(){
                     binding.userRegisterButton.isEnabled = false
                 }
                 is Success -> {
-                    Toast.makeText(requireContext(),"Registration successful",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),getString(R.string.RegisterSuccess),Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_registerFragment_to_allMoviesFragment)
                 }
                 is Error -> {
