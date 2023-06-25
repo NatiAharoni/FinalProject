@@ -53,6 +53,7 @@ class AllUserMoviesFragment : Fragment(), UserMovieAdapter.MovieItemListener {
         binding.moviesUserRv.adapter = adapter
 
         getMainFirebaseMovie()
+
     }
 
     override fun onMovieClick(movieId: String) {

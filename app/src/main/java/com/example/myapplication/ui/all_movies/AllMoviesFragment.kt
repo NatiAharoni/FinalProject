@@ -109,9 +109,6 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
 
         }
 
-        binding.testBtn.setOnClickListener{
-            findNavController().navigate(R.id.action_allMoviesFragment_to_allUserMoviesFragment)
-        }
 
         binding.editeFirebaseMoviesBtn.setOnClickListener{
             if(editMode){

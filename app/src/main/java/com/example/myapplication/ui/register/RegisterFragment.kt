@@ -48,29 +48,37 @@ class RegisterFragment : Fragment(){
 
         viewModel.userRegistrationStatus.observe(viewLifecycleOwner) {
 
-            when(it.status) {
+            when (it.status) {
                 is Loading -> {
                     binding.registerProgress.isVisible = true
                     binding.userRegisterButton.isEnabled = false
                 }
                 is Success -> {
+<<<<<<< HEAD
+                    Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT)
+                        .show()
+                    findNavController().navigate(R.id.action_registerFragment_to_allMoviesFragment)
+=======
                     Toast.makeText(requireContext(),getString(R.string.RegisterSuccess), Toast.LENGTH_SHORT).show()
                     if (isAdmin(it.status.data!!.email))
                         findNavController().navigate(R.id.action_registerFragment_to_allMoviesFragment)
                     else
                         findNavController().navigate(R.id.action_registerFragment_to_allUserMoviesFragment)
+>>>>>>> 1486bf34af7a8718570141762f9ad76d71cd7012
                 }
                 is Error -> {
                     binding.registerProgress.isVisible = false
                     binding.userRegisterButton.isEnabled = true
-                    Toast.makeText(requireContext(),it.status.message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.status.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
-
     }
 }
+<<<<<<< HEAD
+=======
 
 private fun isAdmin (email:String?):Boolean{
     return email == "admin@gmail.com"
 }
+>>>>>>> 1486bf34af7a8718570141762f9ad76d71cd7012

@@ -34,6 +34,7 @@ class EditMovieFragment : Fragment() {
 
     private val viewModel: SingleMovieViewModel by viewModels()
 
+    var idTo: String? = null
     lateinit var movie: Movie
 
     override fun onCreateView(
@@ -89,8 +90,6 @@ class EditMovieFragment : Fragment() {
                 Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
             }
         }
-
-
     }
 
     private fun updateMovie2(movie: Movie) {
