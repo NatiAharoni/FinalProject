@@ -134,14 +134,36 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <Button
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit_movie"
-            android:id="@+id/update_btn"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            app:backgroundTint="#2AD89999"/>
+            android:orientation="horizontal"
+            >
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_movie"
+                android:id="@+id/update_btn"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                app:backgroundTint="#2AD89999"
+                android:layout_marginLeft="75dp"/>
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_movie"
+                android:id="@+id/delete_btn"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                app:backgroundTint="#2AD89999"/>
+
+        </LinearLayout>
 
 
     </LinearLayout>

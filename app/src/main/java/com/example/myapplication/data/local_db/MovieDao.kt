@@ -6,7 +6,9 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.myapplication.data.models.Movie
-
+// MovieDao interface: provides methods for querying and inserting movies in the Room database.
+// It allows you to retrieve all movies, retrieve a movie by its ID, and insert movies individually or in bulk.
+// The use of LiveData enables observing the data and receiving updates when changes occur.
 @Dao
 interface MovieDao {
 

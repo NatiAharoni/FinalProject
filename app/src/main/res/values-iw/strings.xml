@@ -6,7 +6,7 @@
     <string name="Account">אין לך חשבון? לחץ כדי להירשם</string>
     <string name="SignUp">הרשמה</string>
     <string name="year">שנה</string>
-    <string name="SignIn">הרשמה</string>
+    <string name="SignIn">התחברות</string>
     <string name="add_picture">הוספת תמונה</string>
     <string name="delete_movie">מחיקת סרט</string>
     <string name="delete_movie_msg">האם אתה בטוח שאתה רוצה למחוק את הסרט מהרשימה?</string>

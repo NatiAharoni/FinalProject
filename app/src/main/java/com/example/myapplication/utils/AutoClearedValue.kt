@@ -15,7 +15,6 @@ package com.example.myapplication.utils
  * limitations under the License.
  */
 
-
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner

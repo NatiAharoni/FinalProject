@@ -27,11 +27,4 @@ class MovieRepository @Inject constructor(
         {remoteDataSource.getMovie(id)},
         {localDataSource.insertMovie(it)}
     )
-
-    private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
-
-    suspend fun getTrailer(id: String) = coroutineScope.launch {
-        remoteDataSource.getTrailer(id).toString()
-    }
-
 }

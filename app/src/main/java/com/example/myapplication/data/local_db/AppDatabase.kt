@@ -5,7 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.myapplication.data.models.Movie
-
+// Setting up a Room database with a single table represented by the Movie entity.
+// It provides a singleton pattern to ensure that only one instance of the database exists
+// throughout the application's lifecycle.
 @Database(entities = [Movie::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
 

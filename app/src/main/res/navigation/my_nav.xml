@@ -17,9 +17,6 @@
             android:id="@+id/action_allMoviesFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_allMoviesFragment_to_allUserMoviesFragment"
-            app:destination="@id/allUserMoviesFragment" />
-        <action
             android:id="@+id/action_allMoviesFragment_to_editMovieFragment"
             app:destination="@id/editMovieFragment" />
     </fragment>
@@ -64,11 +61,11 @@
         android:label="fragment_all_user_movies"
         tools:layout="@layout/fragment_all_user_movies" >
         <action
-            android:id="@+id/action_allUserMoviesFragment_to_singleMovieFragment"
-            app:destination="@id/singleMovieFragment" />
-        <action
             android:id="@+id/action_allUserMoviesFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_allUserMoviesFragment_to_userSingleMovieFragment"
+            app:destination="@id/userSingleMovieFragment" />
     </fragment>
     <fragment
         android:id="@+id/editMovieFragment"
@@ -77,6 +74,12 @@
         tools:layout="@layout/fragment_edit_movie" >
         <action
             android:id="@+id/action_editMovieFragment_to_allMoviesFragment"
-            app:destination="@id/allMoviesFragment" />
+            app:destination="@id/allMoviesFragment"
+            app:popUpTo="@id/allMoviesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userSingleMovieFragment"
+        android:name="com.example.myapplication.ui.single_movie.UserSingleMovieFragment"
+        android:label="fragment_user_single_movie"
+        tools:layout="@layout/fragment_user_single_movie" />
 </navigation>

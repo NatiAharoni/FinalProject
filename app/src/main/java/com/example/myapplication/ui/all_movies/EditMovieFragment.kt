@@ -32,9 +32,6 @@ class EditMovieFragment : Fragment() {
 
     private var binding: FragmentEditMovieBinding by autoCleared()
 
-    private val viewModel: SingleMovieViewModel by viewModels()
-
-    var idTo: String? = null
     lateinit var movie: Movie
 
     override fun onCreateView(
@@ -49,6 +46,8 @@ class EditMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Fetch the data from the previous fragment (AllMovies), cast it to JSON object.
+        // Update the UI with the updated data.
         arguments?.getString("movie")?.let {
 
             try {
@@ -67,13 +66,12 @@ class EditMovieFragment : Fragment() {
             } catch (e: JSONException) {
                 throw RuntimeException(e)
             }
-            Log.d("idTo", movie.toString())
         }
         updateMovie2(movie)
 
 
 
-
+        // Update the selcted movie details on Firebase (admin).
         binding.updateBtn.setOnClickListener {
             val dbRef = FirebaseDatabase.getInstance().getReference("Manager_Movies").child(movie.id)
             val upTitel = binding.itemTitle.text.toString()
@@ -90,15 +88,21 @@ class EditMovieFragment : Fragment() {
                 Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
             }
         }
+
+        // Delete the selcted movie details on Firebase (admin).
+        binding.deleteBtn.setOnClickListener {
+            val dbRef = FirebaseDatabase.getInstance().getReference("Manager_Movies").child(movie.id)
+            dbRef.removeValue()
+            findNavController().navigate(R.id.action_editMovieFragment_to_allMoviesFragment)
+        }
     }
 
+    // Update the UI with the updated data.
     private fun updateMovie2(movie: Movie) {
 
         binding.itemTitle.text = Editable.Factory.getInstance().newEditable(movie.title)
         binding.itemYearRelease.text = Editable.Factory.getInstance().newEditable(movie.year)
-//        binding.i.text = viewModel.gatTrailer(movie.id).toString()
         Glide.with(requireContext()).load(movie.image).into(binding.updateImage)
-        //movieImageF = movie.image
 
     }
 

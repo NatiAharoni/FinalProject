@@ -53,13 +53,7 @@ class SingleMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-
-        val allEntries: Map<String, *> = sharedPref?.all as Map<String, *>
-
-
-
+        // Fetch the selected movie details and show it on screen.
         viewModel.movie.observe(viewLifecycleOwner) {
             when(it.status) {
                 is Loading -> binding.progressBar.isVisible = true
@@ -79,62 +73,18 @@ class SingleMovieFragment : Fragment() {
         arguments?.getString("id")?.let {
             viewModel.setId(it)
             idTo= it
-            Log.d("idTo", idTo!!)
-
-            currentMovieIsFavorite = sharedPref?.let { it1 -> isFavorite(idTo!!, it1) }
-            if (currentMovieIsFavorite!!) {
-                binding.favoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_favorite_24))
-            }
-
         }
 
+        // Add the movie to the list of selected movies (that all the users can see).
         binding.favoriteButton.setOnClickListener {
-            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@setOnClickListener
-            val editor = sharedPref.edit()
-            val allEntriesSize = sharedPref.getAll().size
-
-            if (currentMovieIsFavorite!!) {
-
-                binding.favoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_favorite_border_24))
-                currentMovieIsFavorite = false
-
-                for ((key, value) in allEntries) {
-                    try {
-                        val jsonObj = JSONObject(value.toString())
-                        if (jsonObj.getString("movieId") == idTo!!) {
-                            editor.remove(key)
-                            editor.apply()
-                        }
-                    } catch (e: JSONException) {
-                        throw java.lang.RuntimeException(e)
-                    }
-                }
-            }
-            else{
-
                 saveMovieData()
-
-
-
-
-                val jasonString = "{\"movieTitle\":" + "\"" + binding.movieTitle.text + "\"" +
-                        ",\"movieImage\":" + "\"" + movieImageF.toString() + "\"" +
-                        ",\"movieYear\":" + "\"" + binding.movieYear.text +"\""+
-                        ",\"movieId\":" + "\"" + idTo
-                    .toString() + "\"" + "}"
-                // Log.d("jasonString",jasonString)
-                Log.d("Save Movie",getString(R.string.SaveMovie))
-
-                editor.putString(Integer.toString(allEntriesSize + 1), jasonString)
-                editor.apply()
                 binding.favoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_favorite_24))
-            }
         }
     }
 
+    // Add the movie to the list of selected movies (that all the users can see).
     private fun saveMovieData() {
 
-//        val movieId = dbRef.push().key!!
         val movieToDb = Movie(idTo!!,binding.movieTitle.text.toString(),binding.movieYear.text.toString(),movieImageF!!.toString())
 
         dbRef.child(idTo!!).setValue(movieToDb)
@@ -145,28 +95,12 @@ class SingleMovieFragment : Fragment() {
             }
     }
 
-    private suspend fun updateMovie(movie: Movie) {
+    // Update the UI with the updated data.
+    private fun updateMovie(movie: Movie) {
 
         binding.movieTitle.text = movie.title
         binding.movieYear.text = movie.year
-        binding.trailer.text = viewModel.gatTrailer(movie.id).toString()
         Glide.with(requireContext()).load(movie.image).into(binding.itemImage)
         movieImageF = movie.image
-    }
-
-    private fun isFavorite(movieId: String, sharedPref: SharedPreferences): Boolean {
-        val allEntries: Map<String, *> = sharedPref.all
-
-        for ((key, value) in allEntries) {
-            try {
-                val jsonObj = JSONObject(value.toString())
-                if (jsonObj.getString("movieId") == movieId) {
-                    return true
-                }
-            } catch (e: JSONException) {
-                throw RuntimeException(e)
-            }
-        }
-        return false
     }
 }

@@ -20,6 +20,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import safeCall
+// --- All USER movies fragment: The fragment that fetches all the movies from the IMDB API.
+//     This fragment is accessible only for the admin. The admin can select from these movies
+//     which ones the regular users will see
+//     This part handles the UI of this fragment. ---
 @AndroidEntryPoint
 class AllUserMoviesFragment : Fragment(), UserMovieAdapter.MovieItemListener {
 
@@ -32,6 +37,10 @@ class AllUserMoviesFragment : Fragment(), UserMovieAdapter.MovieItemListener {
     val mainFirebaseMoviesList : ArrayList<Movie> = ArrayList()
 
     private lateinit var dbRef: DatabaseReference
+
+    var userEmail:String? = null
+
+    var isFavorite:Boolean = false
 
 
 
@@ -52,28 +61,62 @@ class AllUserMoviesFragment : Fragment(), UserMovieAdapter.MovieItemListener {
         binding.moviesUserRv.layoutManager = LinearLayoutManager(requireContext())
         binding.moviesUserRv.adapter = adapter
 
-        getMainFirebaseMovie()
+        userEmail =  arguments?.getString("email")
+
+        getMainFirebaseMovie("Manager_Movies")
+
+        binding.userFavoriteButton.setOnClickListener {
+            // In case the user chose to go to favorite (that's means that now isFavorite is false) - load all the movies related to the user.
+            if(!isFavorite){
+                getMainFirebaseMovie(userEmail + "")
+                binding.userFavoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_wiht_favorite_24))
+                isFavorite = true
+
+            }
+            // In case the user chose to return to the admin's selected movies - load all movies from the admin's list (from Firebase).
+            else{
+                getMainFirebaseMovie("Manager_Movies")
+                binding.userFavoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_wiht_favorite_border_24))
+                isFavorite = false
+
+            }
+
+
+        }
 
     }
 
-    override fun onMovieClick(movieId: String) {
+    // when a user click on a movie - save the data of the user and the movie for the SingleMovie fragment.
+    // So we can save the data of the movie by the user's details.
+    override fun onMovieClick(movie: Movie) {
+        val idAndEmail  = "{\"movieId\":" + "\"" + movie.id + "\"" +
+        ",\"email\":" + "\"" +  arguments?.getString("email") + "\"" +
+                ",\"movieTitle\":" + "\"" + movie.title + "\"" +
+                ",\"movieImage\":" + "\"" + movie.image + "\"" +
+                ",\"movieYear\":" + "\"" + movie.year +"\""+
+                ",\"movieId\":" + "\"" + movie.id + "\"" + "}"
+        Log.d("idAndEmailAndMovie",idAndEmail)
         findNavController().navigate(
-            R.id.action_allUserMoviesFragment_to_singleMovieFragment,
-            bundleOf("id" to movieId)
-        )    }
+            R.id.action_allUserMoviesFragment_to_userSingleMovieFragment,
+            bundleOf("idAndEmailAndMovie" to idAndEmail)
+        )
+    }
 
-    private fun getMainFirebaseMovie(){
+    // This function fetches all the movies from a specific user.
+    // When we want to show all the movies the admin selected - we'll pass the admin's email.
+    private fun getMainFirebaseMovie(path:String){
+
         binding.progressUserBar.visibility = View.VISIBLE
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Manager_Movies")
+        dbRef = FirebaseDatabase.getInstance().getReference(path.replace(".", ",")
+            .replace("#", ",").replace("\$", ",")
+            .replace("'[", ",").replace("]", ","))
 
         dbRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 mainFirebaseMoviesList.clear()
                 if (snapshot.exists()){
                     for (movieInstance in snapshot.children){
-                        Log.d("movieInstance.value",movieInstance.toString())
-                        Log.d("movieInstance.value",movieInstance.value.toString())
                         try {
                             val movieData : Movie? = movieInstance.getValue(Movie::class.java)
                             mainFirebaseMoviesList.add(movieData!!)
@@ -82,21 +125,15 @@ class AllUserMoviesFragment : Fragment(), UserMovieAdapter.MovieItemListener {
                         }
                     }
                     adapter.setMovies(mainFirebaseMoviesList)
-                    binding.progressUserBar.visibility = View.GONE
-                    //binding.moviesUserRv.visibility = View.VISIBLE
-
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
-
-
+        binding.progressUserBar.visibility = View.GONE
     }
-
+    // Logout function using the top menu bar
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu,menu)
         super.onCreateOptionsMenu(menu, inflater)

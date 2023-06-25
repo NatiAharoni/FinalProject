@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.MainActivity"
+    tools:context=".ui.single_movie.UserSingleMovieFragment"
     android:background="#1B1D20">
 
     <LinearLayout
@@ -13,14 +13,6 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:orientation="vertical">
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminate="true"
-            tools:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +28,7 @@
 
 
                 <TextView
-                    android:id="@+id/movie_title"
+                    android:id="@+id/user_movie_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -53,7 +45,7 @@
                     android:layout_weight="2.8"
                     android:textColor="#FFFFFF"
                     android:layout_gravity="bottom"
-                    android:id="@+id/movie_year"
+                    android:id="@+id/user_movie_year"
                     android:hint="@string/year"/>
 
 
@@ -71,7 +63,7 @@
                 app:cardUseCompatPadding="true">
 
                 <ImageView
-                    android:id="@+id/item_image"
+                    android:id="@+id/user_item_image"
                     android:layout_width="150dp"
                     android:layout_height="250dp"
                     android:layout_gravity="center"
@@ -88,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="20dp"
-            android:id="@+id/favoriteButton"
+            android:id="@+id/user_favoriteButton"
             android:src="@drawable/baseline_favorite_border_24"
             app:fab_showShadow="true"
             app:fab_colorNormal="@color/white"

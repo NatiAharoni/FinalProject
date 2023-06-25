@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.all_movies
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -25,9 +24,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
-import org.json.JSONException
-import org.json.JSONObject
 
+// --- All movies fragment: The fragment that fetches all the movies that the ADMIN selected.
+//     This fragment is accessible for every user.
+//     This part handles the UI of this fragment. ---
 @AndroidEntryPoint
 class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
 
@@ -37,9 +37,7 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
 
     private  lateinit var  adapter: MoviesAdapter
 
-    var atMoviesIsFavorite: Boolean = false
-
-    var editMode:Boolean = false
+    var editMode : Boolean = false
 
     private lateinit var dbRef: DatabaseReference
 
@@ -54,6 +52,14 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
         setHasOptionsMenu(true)
         
         binding = MoviesFragmentBinding.inflate(inflater,container,false)
+
+        //Check if the admin is on edit mode, and load the data according to the mode.
+        // if on edit mode - show the movies from firebase (selected movies), else - show all the movies from API
+        if(editMode){
+            getMainFirebaseMovie2()
+        }else{
+            loadAPIMovies()
+        }
         return binding.root
     }
 
@@ -65,55 +71,10 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
         binding.moviesRv.layoutManager = LinearLayoutManager(requireContext())
         binding.moviesRv.adapter = adapter
 
-        loadMovies()
-
-        binding.favoriteButton.setOnClickListener{
-            if(!atMoviesIsFavorite){
-                atMoviesIsFavorite = true
-                binding.favoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_wiht_favorite_24))
-
-                val favoritemMvies:ArrayList<Movie> = ArrayList()
-                val sharedPref = activity!!.getPreferences(Context.MODE_PRIVATE)
-                // Get all key-value pairs from SharedPreferences
-                val allEntries: Map<String, *> = sharedPref.all
-
-                for ((key, value) in allEntries) {
-                    try {
-                        val jsonObj = JSONObject(value.toString())
-                        val movieTitle = jsonObj.getString("movieTitle")
-                        val movieImage = jsonObj.getString("movieImage")
-                        val movieYear = jsonObj.getString("movieYear")
-                        val movieId = jsonObj.getString("movieId")
-
-                        val movieInstance = Movie(
-                            movieId,
-                            movieTitle,
-                            movieYear,
-                            movieImage
-                        )
-                        favoritemMvies.add(movieInstance)
-                    } catch (e: JSONException) {
-                        throw RuntimeException(e)
-                    }
-                }
-                adapter.setMovies(favoritemMvies)
-            }
-            else{
-                atMoviesIsFavorite =false
-                binding.favoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_wiht_favorite_border_24))
-
-
-                loadMovies()
-
-            }
-
-        }
-
-
         binding.editeFirebaseMoviesBtn.setOnClickListener{
             if(editMode){
                 editMode = false
-                loadMovies()
+                loadAPIMovies()
             }else{
                 editMode = true
                 getMainFirebaseMovie2()
@@ -122,6 +83,7 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
     }
 
     override fun onMovieClick(movie: Movie) {
+        // Check if the admin is on edit mode. If so, save the data of the movie in JSON string and pass it to editMovie fragment
         if (editMode){
             val jasonString = "{\"movieTitle\":" + "\"" + movie.title + "\"" +
                     ",\"movieImage\":" + "\"" + movie.image + "\"" +
@@ -136,7 +98,8 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
         }
     }
 
-    fun loadMovies(){
+    // Load all the movies from the API to the UI (using the viewModel and the adapter)
+    fun loadAPIMovies(){
         viewModel.movies.observe(viewLifecycleOwner) {
             when(it.status) {
                 is Loading -> binding.progressBar.isVisible = true
@@ -153,14 +116,13 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
                         it.status.message, Toast.LENGTH_LONG)
                     note.setTextMaxLines(4)
                     note.show()
-                    Log.d("Error-API", it.status.message)
-                    //Toast.makeText(requireContext(),it.status.message,Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
 
 
+    // Load all the movies the admin selected from Firebase
     private fun getMainFirebaseMovie2(){
         binding.progressBar.visibility = View.VISIBLE
 
@@ -171,8 +133,6 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
                 mainFirebaseMoviesList.clear()
                 if (snapshot.exists()){
                     for (movieInstance in snapshot.children){
-                        Log.d("movieInstance.value",movieInstance.toString())
-                        Log.d("movieInstance.value",movieInstance.value.toString())
                         try {
                             val movieData : Movie? = movieInstance.getValue(Movie::class.java)
                             mainFirebaseMoviesList.add(movieData!!)
@@ -181,10 +141,8 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
                         }
                     }
                     adapter.setMovies(mainFirebaseMoviesList)
-                    //binding.moviesUserRv.visibility = View.VISIBLE
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -192,6 +150,7 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
         binding.progressBar.visibility = View.GONE
     }
 
+    // Logout function using the top menu bar
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu,menu)
         super.onCreateOptionsMenu(menu, inflater)

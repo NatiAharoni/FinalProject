@@ -15,15 +15,9 @@ class SingleMovieViewModel @Inject constructor(
 
     private val _id = MutableLiveData<String>()
 
-    suspend fun gatTrailer(id:String){
-        movieRepository.getTrailer(id)
-    }
-
-
     val movie = _id.switchMap {
         movieRepository.getMovie(it)
     }
-
 
     fun setId(id: String) {
         _id.value = id

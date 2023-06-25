@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.data.models.Movie
 import com.example.myapplication.databinding.ItemMovieBinding
-
+// MoviesAdapter class: provides the necessary functionality to display a list of movies in a
+// RecyclerView and handle click events on the movie items using the provided listener interface.
+// This movie adapter fitted to "AllMovies" fragment, that's accessible only for admin.
 class MoviesAdapter(private val listener : MovieItemListener) :
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
