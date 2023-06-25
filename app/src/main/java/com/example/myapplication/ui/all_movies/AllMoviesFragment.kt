@@ -111,9 +111,6 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
 
         }
 
-        binding.testBtn.setOnClickListener{
-            findNavController().navigate(R.id.action_allMoviesFragment_to_allUserMoviesFragment)
-        }
 
         binding.editeFirebaseMoviesBtn.setOnClickListener{
             if(editMode){
@@ -129,14 +126,18 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
         }
     }
 
-    override fun onMovieClick(movieId: String) {
+    override fun onMovieClick(movie: Movie) {
         if (editMode){
+            val jasonString = "{\"movieTitle\":" + "\"" + movie.title + "\"" +
+                    ",\"movieImage\":" + "\"" + movie.image + "\"" +
+                    ",\"movieYear\":" + "\"" + movie.year +"\""+
+                    ",\"movieId\":" + "\"" + movie.id + "\"" + "}"
             findNavController().navigate(R.id.action_allMoviesFragment_to_editMovieFragment,
-                bundleOf("id" to movieId))
+                bundleOf("movie" to jasonString))
         }else{
             findNavController().navigate(
                 R.id.action_allMoviesFragment_to_singleMovieFragment,
-                bundleOf("id" to movieId))
+                bundleOf("id" to movie.id))
         }
     }
 
