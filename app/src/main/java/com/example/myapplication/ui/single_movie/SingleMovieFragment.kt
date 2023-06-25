@@ -123,7 +123,7 @@ class SingleMovieFragment : Fragment() {
                         ",\"movieId\":" + "\"" + idTo
                     .toString() + "\"" + "}"
                 // Log.d("jasonString",jasonString)
-                Log.d("Save Movie","Save Movie!!!!!!!!!!!!!!!!!!")
+                Log.d("Save Movie",getString(R.string.SaveMovie))
 
                 editor.putString(Integer.toString(allEntriesSize + 1), jasonString)
                 editor.apply()
@@ -139,7 +139,7 @@ class SingleMovieFragment : Fragment() {
 
         dbRef.child(idTo!!).setValue(movieToDb)
             .addOnCompleteListener {
-                Toast.makeText(requireContext(),"Data insert successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),getString(R.string.DataInsert), Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
                 Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
             }

@@ -2,6 +2,7 @@ package com.example.myapplication.ui.login
 
 import android.util.Patterns
 import androidx.lifecycle.*
+import com.example.myapplication.R
 import com.example.myapplication.data.models.User
 import kotlinx.coroutines.launch
 import com.example.myapplication.data.repository.AuthRepository
@@ -26,7 +27,7 @@ class LoginViewModel @Inject constructor(private val authRep: AuthRepository) : 
         }
     }
     fun signInUser(userEmail:String, userPass:String) {
-        val error = if(userEmail.isEmpty() || userPass.isEmpty())
+        val error = if (userEmail.isEmpty() || userPass.isEmpty())
             "Empty email or password"
         else if(!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
             "Not a valid email"
