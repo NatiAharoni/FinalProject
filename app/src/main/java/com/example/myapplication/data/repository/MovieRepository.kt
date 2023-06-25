@@ -29,9 +29,5 @@ class MovieRepository @Inject constructor(
     )
 
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
-
-    suspend fun getTrailer(id: String) = coroutineScope.launch {
-        remoteDataSource.getTrailer(id).toString()
-    }
-
+    
 }

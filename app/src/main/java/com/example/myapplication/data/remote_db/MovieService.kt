@@ -13,6 +13,4 @@ interface MovieService {
     @GET("movie/{id}")
     suspend fun getMovie(@Path("id")id :String) : Response<Movie>
 
-    @GET("API/Trailer/k_bzmwixjj/{id}")
-    suspend fun getMovieTrailer(@Path("id")id :String) : Response<String>
 }

@@ -79,18 +79,7 @@
                     android:src="@drawable/img" />
             </androidx.cardview.widget.CardView>
 
-
-
-
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"
-            android:id="@+id/trailer"
-            android:hint="Description"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
