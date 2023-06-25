@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="add_movie_description">תיאור הסרט</string>
-    <string name="add_movie_year">שנת יציאה</string>
-    <string name="add_movie">הוסף סרט</string>
-    <string name="title">כותרת</string>
-    <string name="year">שנת יציאה</string>
-    <string name="add">הוסף</string>
-    <string name="add_movie_title">שם הסרט</string>
+    <string name="Email">אימייל</string>
+    <string name="Password">סיסמא</string>
+    <string name="Login">התחברות</string>
+    <string name="Account">אין לך חשבון, לחץ כדי להירשם</string>
+    <string name="SignUp">הרשמה</string>
+    <string name="year">שנה</string>
+    <string name="SignIn">הרשמה</string>
     <string name="add_picture">הוספת תמונה</string>
     <string name="delete_movie">מחיקת סרט</string>
     <string name="delete_movie_msg">האם אתה בטוח שאתה רוצה למחוק את הסרט מהרשימה?</string>
     <string name="delete_movie_btn">מחיקה</string>
     <string name="delete_movie_cancel_btn">ביטול</string>
-    <string name="description">תיאור</string>
-    <string name="image">תמונה</string>
+    <string name="Register">הירשם</string>
+    <string name="title">כותרת</string>
     <string name="pls_fill">אנא מלא את הפרטים הבאים:</string>
     <string name="orders">לחץ לחיצה כדי להציג פרטים\nלחץ לחיצה ארוכה כדי לערוך\nהחלק לצד כדי למחוק</string>
     <string name="edit_movie">ערוך סרט</string>

@@ -10,19 +10,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
-import com.example.myapplication.data.repository.firebaseImpl.AuthRepositoryFirebase
 import com.example.myapplication.databinding.FragmentLoginBinding
 import com.example.myapplication.utils.Loading
 import com.example.myapplication.utils.Success
 import com.example.myapplication.utils.Error
 import com.example.myapplication.utils.autoCleared
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var binding : FragmentLoginBinding by autoCleared()
-    private val viewModel : LoginViewModel by viewModels {
-        LoginViewModel.LoginViewModelFactory(AuthRepositoryFirebase())
-    }
+    private val viewModel : LoginViewModel by viewModels()
+//    private val viewModel : LoginViewModel by viewModels {
+//        LoginViewModel.LoginViewModelFactory(AuthRepositoryFirebase())
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
