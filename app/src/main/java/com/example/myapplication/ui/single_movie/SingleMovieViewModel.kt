@@ -25,7 +25,7 @@ class SingleMovieViewModel @Inject constructor(
     }
 
 
-    fun setId(id:String) {
+    fun setId(id: String) {
         _id.value = id
     }
 }

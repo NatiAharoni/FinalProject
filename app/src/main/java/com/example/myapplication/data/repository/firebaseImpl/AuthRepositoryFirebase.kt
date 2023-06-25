@@ -23,6 +23,10 @@ class AuthRepositoryFirebase : AuthRepository{
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val userRef = FirebaseFirestore.getInstance().collection("users")
 
+//class AuthRepositoryFirebase @Inject constructor(
+//    private val firebaseAuth : FirebaseAuth,
+//    private val userRef : FirebaseFirestore) : AuthRepository{
+
     override suspend fun currentUser(): Resource<User> {
         return withContext(Dispatchers.IO) {
             safeCall {

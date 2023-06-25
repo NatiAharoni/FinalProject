@@ -22,5 +22,11 @@
     <string name="add_movie_title">ערוך כותרת</string>
     <string name="add_movie_year">ערוך שנה</string>
     <string name="add_movie_description">תאור</string>
+    <string name="emptystrings">אין אימייל או סיסמא</string>
+    <string name="LoginSuccess">ההתחברות הצליחה</string>
+    <string name="valid_email">אימייל לא מתאים</string>
+    <string name="RegisterSuccess">ההרשמה הצליחה</string>
+    <string name="SaveMovie">שמור סרט!</string>
+    <string name="DataInsert">דאטה נוסף בהצלחה</string>
 
 </resources>

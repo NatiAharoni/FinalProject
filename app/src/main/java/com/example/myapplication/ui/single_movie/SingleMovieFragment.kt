@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,8 +21,6 @@ import com.example.myapplication.utils.Loading
 import com.example.myapplication.utils.Success
 import com.example.myapplication.utils.autoCleared
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.json.JSONException
@@ -126,7 +123,7 @@ class SingleMovieFragment : Fragment() {
                         ",\"movieId\":" + "\"" + idTo
                     .toString() + "\"" + "}"
                 // Log.d("jasonString",jasonString)
-                Log.d("Save Movie","Save Movie!!!!!!!!!!!!!!!!!!")
+                Log.d("Save Movie",getString(R.string.SaveMovie))
 
                 editor.putString(Integer.toString(allEntriesSize + 1), jasonString)
                 editor.apply()
@@ -142,7 +139,7 @@ class SingleMovieFragment : Fragment() {
 
         dbRef.child(idTo!!).setValue(movieToDb)
             .addOnCompleteListener {
-                Toast.makeText(requireContext(),"Data insert successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),getString(R.string.DataInsert), Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
                 Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
             }

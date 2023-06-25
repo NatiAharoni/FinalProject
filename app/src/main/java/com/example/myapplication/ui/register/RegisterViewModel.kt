@@ -3,6 +3,7 @@ package com.example.myapplication.ui.register
 import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.*
+import com.example.myapplication.R
 import com.example.myapplication.data.models.User
 import com.example.myapplication.data.repository.AuthRepository
 import com.example.myapplication.utils.Resource
@@ -20,7 +21,7 @@ class RegisterViewModel @Inject constructor(private val repository: AuthReposito
 
     fun createUser(email: String, password: String) {
         val error = if(email.isEmpty() || password.isEmpty())
-            "Empty Strings"
+            "Empty email or password"
         else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             "Not a valid email"
         }else null

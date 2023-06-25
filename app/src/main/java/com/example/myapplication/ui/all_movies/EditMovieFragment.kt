@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.myapplication.R
 import com.example.myapplication.data.models.Movie
 import com.example.myapplication.databinding.FragmentEditMovieBinding
 import com.example.myapplication.ui.single_movie.SingleMovieViewModel
@@ -101,6 +100,7 @@ class EditMovieFragment : Fragment() {
 //        binding.i.text = viewModel.gatTrailer(movie.id).toString()
         Glide.with(requireContext()).load(movie.image).into(binding.updateImage)
         //movieImageF = movie.image
+
     }
 
 }
