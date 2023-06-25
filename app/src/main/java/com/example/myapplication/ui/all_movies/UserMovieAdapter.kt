@@ -9,13 +9,13 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.data.models.Movie
 import com.example.myapplication.databinding.ItemMovieBinding
 
-class MoviesAdapter(private val listener : MovieItemListener) :
-    RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
+class UserMovieAdapter(private val listener : MovieItemListener) :
+    RecyclerView.Adapter<UserMovieAdapter.MovieViewHolder>() {
 
     private val movies = ArrayList<Movie>()
 
     class MovieViewHolder(private val itemBinding: ItemMovieBinding,
-                              private val listener: MovieItemListener
+                          private val listener: MovieItemListener
     )
         : RecyclerView.ViewHolder(itemBinding.root),
         View.OnClickListener {

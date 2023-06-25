@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_allMoviesFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_allMoviesFragment_to_allUserMoviesFragment"
+            app:destination="@id/allUserMoviesFragment" />
+        <action
+            android:id="@+id/action_allMoviesFragment_to_editMovieFragment"
+            app:destination="@id/editMovieFragment" />
     </fragment>
     <fragment
         android:id="@+id/singleMovieFragment"
@@ -43,4 +49,18 @@
             android:id="@+id/action_loginFragment_to_allMoviesFragment"
             app:destination="@id/allMoviesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/allUserMoviesFragment"
+        android:name="com.example.myapplication.ui.all_movies.AllUserMoviesFragment"
+        android:label="fragment_all_user_movies"
+        tools:layout="@layout/fragment_all_user_movies" >
+        <action
+            android:id="@+id/action_allUserMoviesFragment_to_singleMovieFragment"
+            app:destination="@id/singleMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editMovieFragment"
+        android:name="com.example.myapplication.ui.all_movies.EditMovieFragment"
+        android:label="fragment_edit_movie"
+        tools:layout="@layout/fragment_edit_movie" />
 </navigation>

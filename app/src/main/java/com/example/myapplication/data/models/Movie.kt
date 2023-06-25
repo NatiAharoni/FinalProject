@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "movies")
 data class Movie(
     @PrimaryKey
-    val id: String,
-    val title:String,
-    val year:String,
-    val image:String
+    val id: String = "",
+    val title:String = "",
+    val year:String = "",
+    val image:String = ""
 ) {}

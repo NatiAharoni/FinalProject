@@ -21,6 +21,11 @@ import com.example.myapplication.utils.Loading
 import com.example.myapplication.utils.Success
 import com.example.myapplication.utils.autoCleared
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONException
 import org.json.JSONObject
@@ -35,6 +40,14 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
     private  lateinit var  adapter: MoviesAdapter
 
     var atMoviesIsFavorite: Boolean = false
+
+    var editMode:Boolean = false
+
+    private lateinit var dbRef: DatabaseReference
+
+    val mainFirebaseMoviesList : ArrayList<Movie> = ArrayList()
+
+
 
 
     override fun onCreateView(
@@ -59,7 +72,7 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
         binding.favoriteButton.setOnClickListener{
             if(!atMoviesIsFavorite){
                 atMoviesIsFavorite = true
-                binding.favoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_favorite_24))
+                binding.favoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_wiht_favorite_24))
 
                 val favoritemMvies:ArrayList<Movie> = ArrayList()
                 val sharedPref = activity!!.getPreferences(Context.MODE_PRIVATE)
@@ -89,7 +102,7 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
             }
             else{
                 atMoviesIsFavorite =false
-                binding.favoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_favorite_border_24))
+                binding.favoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_wiht_favorite_border_24))
 
 
                 loadMovies()
@@ -97,12 +110,34 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
             }
 
         }
+
+        binding.testBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_allMoviesFragment_to_allUserMoviesFragment)
+        }
+
+        binding.editeFirebaseMoviesBtn.setOnClickListener{
+            if(editMode){
+                editMode = false
+                loadMovies()
+            }else{
+                editMode = true
+                getMainFirebaseMovie2()
+
+
+            }
+
+        }
     }
 
     override fun onMovieClick(movieId: String) {
-        findNavController().navigate(
-            R.id.action_allMoviesFragment_to_singleMovieFragment,
-            bundleOf("id" to movieId))
+        if (editMode){
+            findNavController().navigate(R.id.action_allMoviesFragment_to_editMovieFragment,
+                bundleOf("id" to movieId))
+        }else{
+            findNavController().navigate(
+                R.id.action_allMoviesFragment_to_singleMovieFragment,
+                bundleOf("id" to movieId))
+        }
     }
 
     fun loadMovies(){
@@ -127,5 +162,41 @@ class AllMoviesFragment : Fragment(), MoviesAdapter.MovieItemListener {
                 }
             }
         }
+    }
+
+
+    private fun getMainFirebaseMovie2(){
+        binding.progressBar.visibility = View.VISIBLE
+
+        dbRef = FirebaseDatabase.getInstance().getReference("Manager_Movies")
+
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                mainFirebaseMoviesList.clear()
+                if (snapshot.exists()){
+                    for (movieInstance in snapshot.children){
+                        Log.d("movieInstance.value",movieInstance.toString())
+                        Log.d("movieInstance.value",movieInstance.value.toString())
+                        try {
+                            val movieData : Movie? = movieInstance.getValue(Movie::class.java)
+                            mainFirebaseMoviesList.add(movieData!!)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                    adapter.setMovies(mainFirebaseMoviesList)
+                    binding.progressBar.visibility = View.GONE
+                    //binding.moviesUserRv.visibility = View.VISIBLE
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
     }
 }

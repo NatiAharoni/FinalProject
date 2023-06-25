@@ -7,6 +7,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         val binding  = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //val firebase : DatabaseReference = FirebaseDatabase.getInstance().getReference()
 
         //val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         //val navController = navHostFragment.navController
