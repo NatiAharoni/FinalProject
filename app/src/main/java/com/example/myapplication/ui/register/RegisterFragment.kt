@@ -54,17 +54,17 @@ class RegisterFragment : Fragment(){
                     binding.userRegisterButton.isEnabled = false
                 }
                 is Success -> {
-<<<<<<< HEAD
+
                     Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT)
                         .show()
                     findNavController().navigate(R.id.action_registerFragment_to_allMoviesFragment)
-=======
+
                     Toast.makeText(requireContext(),getString(R.string.RegisterSuccess), Toast.LENGTH_SHORT).show()
                     if (isAdmin(it.status.data!!.email))
                         findNavController().navigate(R.id.action_registerFragment_to_allMoviesFragment)
                     else
                         findNavController().navigate(R.id.action_registerFragment_to_allUserMoviesFragment)
->>>>>>> 1486bf34af7a8718570141762f9ad76d71cd7012
+
                 }
                 is Error -> {
                     binding.registerProgress.isVisible = false
@@ -75,10 +75,8 @@ class RegisterFragment : Fragment(){
         }
     }
 }
-<<<<<<< HEAD
-=======
 
 private fun isAdmin (email:String?):Boolean{
     return email == "admin@gmail.com"
 }
->>>>>>> 1486bf34af7a8718570141762f9ad76d71cd7012
+
