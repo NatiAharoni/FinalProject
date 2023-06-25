@@ -9,10 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.example.myapplication.R
 import com.example.myapplication.data.models.Movie
 import com.example.myapplication.databinding.FragmentEditMovieBinding
-import com.example.myapplication.databinding.MovieDetailFragmentBinding
 import com.example.myapplication.ui.single_movie.SingleMovieViewModel
 import com.example.myapplication.utils.autoCleared
 
@@ -53,9 +51,7 @@ class EditMovieFragment : Fragment() {
 
         binding.itemTitle.text = Editable.Factory.getInstance().newEditable(movie.title)
         binding.itemYearRelease.text = Editable.Factory.getInstance().newEditable(movie.year)
-//        binding.i.text = viewModel.gatTrailer(movie.id).toString()
         Glide.with(requireContext()).load(movie.image).circleCrop().into(binding.resultImage)
-        //movieImageF = movie.image
     }
 
 }
