@@ -65,7 +65,7 @@ class SingleMovieFragment : Fragment() {
                 }
                 is Error -> {
                     binding.progressBar.isVisible = false
-                    Toast.makeText(requireContext(),it.status.message,Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireContext(),it.status.message,Toast.LENGTH_SHORT).show()
                 }
             }
         }

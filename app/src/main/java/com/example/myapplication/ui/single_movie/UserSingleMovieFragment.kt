@@ -72,7 +72,7 @@ class UserSingleMovieFragment : Fragment() {
         // Save the selected movie (favorite) to the user's Firebase.
         binding.userFavoriteButton.setOnClickListener {
 
-            binding.userFavoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_favorite_border_24))
+            binding.userFavoriteButton.setImageDrawable(resources.getDrawable(R.drawable.baseline_favorite_24))
 
             dbRefUser.child(movieId!!).setValue(movieSelect)
                 .addOnCompleteListener {
